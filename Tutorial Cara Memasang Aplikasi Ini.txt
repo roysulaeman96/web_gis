@@ -1,0 +1,77 @@
+TUTORIAL CARA MEMASANG APLIKASI INI
+
+Aplikasi ini adalah project Laravel. Tutorial ini dibuat untuk instalasi di Windows menggunakan Laragon.
+
+1. Persiapan Awal
+- Pastikan sudah terpasang:
+  - Laragon
+  - PHP
+  - Composer
+  - Node.js dan npm
+  - MySQL
+- Buka folder project di:
+  - c:\laragon6.0.0\www\Arsip-Priv8\web_gis
+
+2. Import Database
+- Buka phpMyAdmin atau MySQL client.
+- Buat database baru, misalnya: web_gis.
+- Import file database berikut:
+  - bakcup_db_web_gis_03052026.sql
+
+3. Atur File Environment
+- Copy file .env.example menjadi .env jika belum ada.
+- Atur isi .env sesuai database Anda, contohnya:
+  - DB_DATABASE=web_gis
+  - DB_USERNAME=root
+  - DB_PASSWORD=
+- Sesuaikan APP_URL jika diperlukan.
+
+4. Install Dependensi Backend
+- Buka terminal di folder project.
+- Jalankan perintah:
+  - composer install
+
+5. Jika Project Dipindahkan ke Laptop Baru
+- Jika folder node_modules ikut terbawa dari laptop lama, hapus folder tersebut terlebih dahulu.
+- Jika file package-lock.json ikut terbawa, sebaiknya hapus juga supaya dependency dibangun ulang dengan bersih.
+- Setelah itu jalankan npm install agar node_modules dibuat ulang sesuai environment laptop baru.
+
+6. Generate Key Aplikasi
+- Jalankan perintah:
+  - php artisan key:generate
+
+7. Jalankan Migrasi
+- Jika database masih kosong atau perlu update struktur tabel, jalankan:
+  - php artisan migrate
+- Jika database sudah diimport dan strukturnya sudah lengkap, langkah ini bisa dilewati.
+
+8. Install Dependensi Frontend
+- Jalankan perintah:
+  - npm install
+
+9. Build Asset Frontend
+- Jalankan perintah:
+  - npm run build
+- Jika ingin mode development, gunakan:
+  - npm run dev
+
+10. Buat Link Storage
+- Jalankan perintah:
+  - php artisan storage:link
+
+11. Jalankan Aplikasi
+- Jika menggunakan Laragon, aktifkan Apache dan MySQL.
+- Buka aplikasi melalui browser, misalnya:
+  - http://web_gis.test
+  - atau sesuaikan dengan domain Laragon Anda
+
+12. Login
+- Gunakan akun yang tersedia di database atau akun yang sudah didaftarkan melalui fitur aplikasi.
+
+13. Catatan Penting
+- Jika file gambar atau upload tidak tampil, pastikan folder storage sudah terhubung.
+- Jika ada error database, cek kembali isi .env dan nama database yang diimport.
+- Jika tampilan frontend tidak berubah, jalankan ulang npm run build.
+- Jika ada masalah saat instalasi, pastikan command artisan dan npm berjalan tanpa error.
+
+Selesai.
